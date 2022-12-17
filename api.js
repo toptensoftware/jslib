@@ -72,13 +72,13 @@ export async function api_fetch(method, endPoint, data, options)
 // Invokes a POST end point
 export async function api_post(endPoint, data, options)
 {
-    return fetchJson("POST", endPoint, data, options);
+    return api_fetch("POST", endPoint, data, options);
 }
 
 // Invokes a GET end point
 export async function api_get(endPoint, query, options)
 {
-    return fetchJson("GET", endPoint + queryString(query), null, options);
+    return api_fetch("GET", endPoint + queryString(query), null, options);
 }
 
 // Check if a cancellable request is currently in flight
