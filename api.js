@@ -12,7 +12,6 @@ export async function api_fetch(method, endPoint, data, options)
     // Setup base options
     let fetchOptions = {
         method: method,
-        credentials: "include",
         cache: "no-cache",
         headers: {}
     }
