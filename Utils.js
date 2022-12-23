@@ -281,3 +281,8 @@ export function ensureVisible(elItem, elContainer, options)
         elItem.scrollIntoView({ behavior: "auto", block: "start" });        
 
 }
+
+export async function delay(period)
+{
+    return new Promise((resolve) => setTimeout(resolve, period));
+}

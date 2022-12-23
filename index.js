@@ -1,5 +1,6 @@
 
 export { AsyncSemaphore } from './AsyncSemaphore.js';
+export { AsyncInstanceMap } from './AsyncInstanceMap.js';
 export { Concurrency } from './Concurrency.js';
 export { ProgressCalculator } from './ProgressCalculator.js';
 export { VelocityCalculator } from './VelocityCalculator.js';
