@@ -1,12 +1,3 @@
-export const monthNames = [
-    'January', 'Febrary', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-];
-
-export const dayNames = [
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
-];
-
 // From here: https://stackoverflow.com/a/61395050/77002
 export function merge(target, ...sources) 
 {
@@ -41,16 +32,6 @@ export function filterObject(obj, predicate)
     return newObj;
 }
 
-export function getMonthName(month)
-{
-    return monthNames[month-1];
-}
-
-export function getDayName(day)
-{
-    return dayNames[day];
-}
-
 export function properCase(stri)
 {
     return str.replace(/(^|\s)\S/g, function(t) { return t.toUpperCase() });
@@ -65,59 +46,11 @@ export function trimSlashes(str)
     return str;
 }
 
-export function formatLocalDate(d)
-{
-    let now = new Date();
-    d = new Date(d + (now.getTimezoneOffset() * 60000));
-    return d.toLocaleDateString(undefined, { dateStyle: "medium" });
-}
-
-export function formatDate(d)
-{
-    d = new Date(d);
-    return d.toLocaleDateString(undefined, { dateStyle: "medium" });
-}
-
-export function formatLocalTime(d)
-{
-    let now = new Date();
-    d = new Date(d + (now.getTimezoneOffset() * 60000));
-    return d.toLocaleTimeString(undefined, { timeStyle: "short" });
-}
-
-export function formatTime(d)
-{
-    d = new Date(d);
-    return d.toLocaleTimeString(undefined, { timeStyle: "short" });
-}
-
 export function htmlEncode(str)
 {
     return str.replace(/[\u00A0-\u9999<>\&]/g, function(i) {
         return '&#'+i.charCodeAt(0)+';';
     });
-}
-
-export function formatTimeRemaining(ms)
-{
-    let secs = Math.round(ms / 1000);
-    if (secs < 60)
-    {
-        return `${secs} second${secs == 1 ? '' : 's'}`;
-    }
-    
-    let mins = Math.round(secs / 60);
-    if (mins < 60)
-    {
-        return `${mins} minute${mins == 1 ? '' : 's'}`;
-    }
-
-    if (mins < 60 * 8 && Math.floor(mins % 60) != 0)
-    {
-        return `${Math.floor(mins / 60)} hours, ${Math.floor(mins % 60)} minutes`;
-    }
-
-    return `${Math.floor(mins / 60)} hours`;
 }
 
 export function connectEvents(el, options)
@@ -184,6 +117,16 @@ export function any(array, predicate)
             return true;
     }
     return false;
+}
+
+export function all(array, predicate)
+{
+    for (let i of array)
+    {
+        if (!predicate(i))
+            return false;
+    }
+    return true;
 }
 
 export function compareStrings(a, b)
@@ -285,4 +228,24 @@ export function ensureVisible(elItem, elContainer, options)
 export async function delay(period)
 {
     return new Promise((resolve) => setTimeout(resolve, period));
+}
+
+export function binarySearch(array, compare)
+{
+    let lo = 0;
+    let hi = array.length - 1;
+
+    while (lo <= hi)
+    {
+        let mid = Math.floor((lo + hi) / 2);
+        let comp = compare(array[mid]);
+        if (comp == 0)
+            return mid;
+        if (comp < 0)
+            lo = mid + 1;
+        else
+            hi = mid - 1;
+    }
+
+    return -lo - 1;
 }

@@ -1,5 +1,5 @@
 // Wrapper for all API end point calls
-import { queryString } from './Utils.js';
+import { queryString } from './utils_misc.js';
 
 // Request cancel map
 let cancelMap = new Map();

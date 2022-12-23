@@ -1,5 +1,4 @@
 import crypto from 'crypto';
-import { delay } from './Utils.js';
 
 export class AsyncInstanceMap
 {
