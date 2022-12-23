@@ -3,9 +3,10 @@ import { delay } from './Utils.js';
 
 export class AsyncInstanceMap
 {
-    constructor()
+    constructor(factory)
     {
         this.map = new Map();
+        this.factory = factory;
     }
 
     static formatKey(key)
@@ -13,7 +14,7 @@ export class AsyncInstanceMap
         return crypto.createHash('sha256').update(JSON.stringify(key)).digest('hex');
     }
 
-    get(key, factory)
+    get(key)
     {
         // Make key
         let saveKey = key;
@@ -26,7 +27,7 @@ export class AsyncInstanceMap
 
         // Create entry and call factory
         e = {
-            promise: factory(saveKey)
+            promise: this.factory(saveKey)
         };
 
         // Store in map
