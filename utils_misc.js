@@ -60,7 +60,7 @@ export function connectEvents(el, options)
         if (typeof options[e] == 'function')
             el.addEventListener(e, options[e]);
         else if (options[e].el)
-            options[e].el.addEventListener(e, options[e].handler ?? options[e][e]);
+            options[e].el.addEventListener(e, options[e].handler ?? options[e][e], options[e].options);
     }
 
     return function()
@@ -72,7 +72,7 @@ export function connectEvents(el, options)
                 if (typeof options[e] == 'function')
                     el.removeEventListener(e, options[e]);
                 else if (options[e].el)
-                    options[e].el.removeEventListener(e, options[e].handler ?? options[e][e]);
+                    options[e].el.removeEventListener(e, options[e].handler ?? options[e][e], options[e].options);
             }
         }
         options = null;
