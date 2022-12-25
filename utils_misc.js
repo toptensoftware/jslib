@@ -225,6 +225,24 @@ export function ensureVisible(elItem, elContainer, options)
 
 }
 
+
+// Translate coordinates of one element to another
+export function translateCoords(coords, fromElement, toElement)
+{
+    if (fromElement == toElement)
+        return coords;
+
+    let fromRect = fromElement.getBoundingClientRect();
+    let toRect = toElement.getBoundingClientRect();
+
+    return {
+        x: coords.x + fromRect.x - toRect.x,
+        y: coords.y + fromRect.y - toRect.y,
+    }
+
+}
+
+
 export async function delay(period)
 {
     return new Promise((resolve) => setTimeout(resolve, period));
