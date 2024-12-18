@@ -4,7 +4,7 @@ export { AsyncInstanceMap } from './AsyncInstanceMap.js';
 export { Concurrency } from './Concurrency.js';
 export { ProgressCalculator } from './ProgressCalculator.js';
 export { VelocityCalculator } from './VelocityCalculator.js';
-export { Random } from './Random';
+export { Random } from './Random.js';
 export { SelectionSet } from './SelectionSet.js';
 export { StringScanner } from './StringScanner.js';
 export * from './utils_date.js';
